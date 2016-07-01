@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/current_stacksize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/undostacksize" />
+
+    <SeekBar
+        android:id="@+id/stacksize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="150dp" />
+
+    <Button
+        android:id="@+id/clearcache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/maincolor_round_bg"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/deletePaint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/maincolor_round_bg"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/checkupdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/maincolor_round_bg"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/joinQQGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/maincolor_round_bg"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/language" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/CN"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radiobutton_checkchanged"
+            android:button="@null"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="简体"
+            android:textColor="@drawable/textsize_textcolor" />
+
+        <RadioButton
+            android:id="@+id/TW"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/radiobutton_checkchanged"
+            android:button="@null"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="繁體"
+            android:textColor="@drawable/textsize_textcolor" />
+
+        <RadioButton
+            android:id="@+id/EN"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/radiobutton_checkchanged"
+            android:button="@null"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="English"
+            android:textColor="@drawable/textsize_textcolor" />
+    </RadioGroup>
+</LinearLayout>

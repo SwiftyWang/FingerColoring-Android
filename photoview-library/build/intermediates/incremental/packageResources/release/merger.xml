@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\Dropbox\MyProject\FillColor\photoview-library\src\main\res"/><source path="D:\Dropbox\MyProject\FillColor\photoview-library\build\generated\res\rs\release"/><source path="D:\Dropbox\MyProject\FillColor\photoview-library\build\generated\res\generated\release"/></dataSet><dataSet config="release"><source path="D:\Dropbox\MyProject\FillColor\photoview-library\src\release\res"/></dataSet><mergedItems/></merger>

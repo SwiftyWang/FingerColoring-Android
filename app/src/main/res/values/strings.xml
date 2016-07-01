@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Finger Coloring</string>
+    <string name="UMENGAPPKEY">55c0b9f967e58ee78f00231d</string>
+    <string name="BAIDUAPIKEY">iD8ulydDkWhNWFmQEGEGY4m9</string>
+    <string name="facebook_app_id">1493345047643407</string>
+    <string name="CHANNEL">default</string>
+    <string name="action_settings">More Functions</string>
+    <string name="action_about">About</string>
+    <string name="action_advice">Give Advice</string>
+    <string name="clickloadmore">Scroll To Bottom Load More</string>
+    <string name="loadmoretheme">Load More...</string>
+    <string name="grabdata">Loading Data...</string>
+    <string name="loadpicture">Initial Paints</string>
+    <string name="loadpicturefailed">Loading Failed, Please retry.</string>
+    <string name="advance">MORE</string>
+    <string name="undo">UNDO</string>
+    <string name="redo">REDO</string>
+    <string name="save">SAVE</string>
+    <string name="share">SHARE</string>
+    <string name="savingimage">Save to Local</string>
+    <string name="saveFailed">Save Failed</string>
+    <string name="saveSuccess">Your Paint has been saved in：</string>
+    <string name="sharecontent">I am playing 【Finger Coloring】, Come and Play with me! Link：http://a.app.qq.com/o/simple.jsp?pkgname=com.swifty.fillcolor</string>
+    <string name="pleaseselect">Please Select</string>
+    <string name="sharemywork">Come see my new work.</string> 
+    <string name="open">READ</string>    
+    <string name="openfailed">Fast fingertips to create one now!</string>   
+    <string name="ok">OK</string>    
+    <string name="quitorsave">Before leaving, need to save your current work?</string>    
+    <string name="quit">No</string>    
+    <string name="action_search">Local Search</string>   
+    <string name="action_more">MORE</string>   
+    <string name="marketcomment">Give me five-star</string>    
+    <string name="about">About and Description</string>    
+    <string name="version">version</string>    
+    <string name="email">Feedback</string>    
+    <string name="authoremail">469526674@qq.com</string>    
+    <string name="qq">QQ login</string>    
+    <string name="commentFailed">Install an application market</string>    
+    <string name="opensuccess">has opened for you to save work, you can continue to create it! \n
+        Click Undo to return the original image!
+    </string>    
+    <string name="noupdatelog"></string>    
+    <string name="undostacksize">Undo steps</string>    
+    <string name="loadfailed">load data failed</string>    
+    <string name="commentDialogContent">Come and give me a five-star, you can free download
+        new artworks!
+    </string>    
+    <string name="nexttime">Later</string>    
+    <string name="gocomment">Give me Five</string>    
+    <string name="clearcache">clear all ImageCache \n your work will not be
+        deleted
+    </string>
+      
+    <string name="clearcacheing">Cleaning the cache, please wait</string>
+      
+    <string name="clearcachesuccess">Clear success</string>
+      
+    <string name="themelist">Theme List</string>
+      
+    <string name="pleasepressexit">press again to Exit</string>
+      
+    <string name="nomoredata">All loading is complete</string>
+      
+    <string name="loading">Loading ...</string>
+      
+    <string name="secretGarden">Secret Garden</string>
+      
+    <string name="welcomeusethis">Welcome to Finger Coloring</string>
+      
+    <string name="paintHint">select favorite color then touch image to a blank area \n two fingers
+        can
+        zoom the image \n you can save four favorite colors, Have fun!
+    </string>
+      
+    <string name="paintHint2">After opening a saved image, press Undo to return to the original,
+        restart to coloring!\n Have fun!
+    </string>
+      
+    <string name="qqgroup">QQ group of players</string>
+      
+    <string name="qqgroupnumber">104368068</string>
+      
+    <string name="joinGroupFailed">QQ is not installed or installed version is not supported
+    </string>
+      
+    <string name="joinGroup">join QQ groups</string>
+      
+    <string name="wechat">Wechat</string>
+      
+    <string name="userlogin">My paints</string>
+      
+    <string name="imagewall">Image Wall</string>
+      
+    <string name="pullqqloging">Connect to QQ login</string>
+      
+    <string name="network_notconnet">Please connect to the network</string>
+      
+    <string name="comment">Comments</string>
+      
+    <string name="logout">Logout</string>
+      
+    <string name="addtext">Add Text</string>
+      
+    <string name="addvoice">Add sound</string>
+      
+    <string name="delete">DELETE</string>
+      
+    <string name="repaint">REPAINT</string>
+      
+    <string name="confirmRepaint">Redrawing will delete the saved works, determined to redraw
+        it?
+    </string>
+      
+    <string name="cancel">Cancel</string>
+      
+    <string name="addeditwords_hint">write some greetings!</string>
+      
+    <string name="textsize">Font Size</string>
+      
+    <string name="small">small</string>
+      
+    <string name="middle">middle</string>
+     
+    <string name="large">large</string>
+      
+    <string name="huge">huge</string>
+      
+    <string name="textcolor">Font Color</string>
+      
+    <string name="nowords">Write something please!</string>
+      
+    <string name="savetocloud">Upload</string>
+      
+    <string name="giveme5stars">Come and give me a five-star, and immediately unlock these
+        pictures!
+    </string>
+      
+    <string name="updateVersion">upgrade version</string>
+      
+    <string name="currentVersionIsntSupport">lol ~ not find the key to unlock this image, please
+        upgrade your version then trying again!
+    </string>
+      
+    <string name="checkupdate">Check for updates</string>
+      
+    <string name="sharemeunlock">Share me with friends, and immediately unlock
+        these pictures!
+    </string>
+      
+    <string name="noupdate">Latest version</string>
+      
+    <string name="onlyupdateinwifi">No wifi connection, only updates under the wifi</string>
+      
+    <string name="timeout">Connection timed out, please try again</string>
+      
+    <string name="checkupdateing">Check Update</string>
+      
+    <string name="addborder">Add frame</string>
+      
+    <string name="pleaselogin">Coming soon!</string>
+      
+    <string name="comingsoon">Coming soon!</string>
+      
+    <string name="localPaint">Local Paints</string>
+      
+    <string name="cloudPaint">Cloud Paints</string>
+      
+    <string name="nopaint">Cannot find any data!</string>
+      
+    <string name="deletePaintFailed">Delete Paints failed</string>
+      
+    <string name="deleteAllPaints">Delete all Paints</string>
+      
+    <string name="confirmDeleteAllPaints">Warning! Do you confirmation to delete all your paints
+        (cannot undo)?
+    </string>
+      
+    <string name="deleteAllPaintsSuccess">Delete completed!</string>
+      
+    <string name="lastModifty">Last modified</string>
+      
+    <string name="aboutImage">Artwork Source: The software artwork from internet, if you have
+        questions or would like to give me wired manuscript. Please use the following contact
+        information.
+    </string>
+      
+    <string name="addQQgroup">Join QQ group</string>
+      
+    <string name="addQQgroupContent">Need to join QQ groups? After joining
+        you can play games with other friends!
+    </string>
+    <string name="pickcolor">PICK</string>
+    <string name="pickcolorhint">Touch the color area you like, to take the color.</string>
+      
+    <string name="pickcolorerror">Touch the correct color location.</string>
+      
+    <string name="drawLine">AddLine</string>
+      
+    <string name="drawLineHint">Touch the image to set the start point.</string>
+      
+    <string name="drawLineHint_second">Touch the image to set the end point.</string>
+      
+    <string name="drawLineHint_finish">Touch valid image area.</string>
+      
+    <string name="allPicture">Cached Pics</string>
+      
+    <string name="dontshownexttime">Don\'t show next time.</string>
+      
+    <string name="buxianfunction">Draw Lines</string>
+      
+    <string name="buxianfunctionhint">Now you can draw lines in the picture, and then fill it! \n First, click anywhere on the image, set the start point.
+    </string>
+      
+    <string name="buxianfirstpointsethint">Then touch the picture to set the end position, the system will automatically complete the line.
+    </string>
+      
+    <string name="buxiannextpointsethint">Touch the other areas to continue draw linesUndo button can be erased the pre line.
+    </string>
+      
+    <string name="pullfacebookloging">Connect to Facebook login</string>
+      
+    <string name="facebooklogin">Facebook Login</string>
+    <string name="language">Language</string>
+    <string name="menu">MENU</string>
+    <string name="social">SNS</string>
+    <string name="loginSuccess">Login Success</string>
+    <string name="loginFailed">Login Failed</string>
+    <string name="logincontent">Login As...</string>
+    <string name="logincontentfirst">Login and use Cloud upload function!\nLogin now!</string>
+    <string name="loginbg">Login in background..</string>
+    <string name="jianbian_color">Gradual</string>
+    <string name="normal_color">Normal</string>
+    <string name="gradualModel">Gradual Model</string>
+    <string name="gradualModelHint">Advanced features - gradient colors. Note: You can not cover other colors after a gradient color, if you want to modify, please undo first!</string>
+</resources>

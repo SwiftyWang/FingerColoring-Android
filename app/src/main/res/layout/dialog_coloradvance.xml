@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/advancelay"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/maincolor"
+    android:orientation="horizontal"
+    android:visibility="gone">
+
+
+    <com.swifty.fillcolor.view.ImageButton_define
+        android:id="@+id/delete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/firstrow_icon_bg"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:src="@drawable/button_delete"
+        android:text="@string/delete"
+        android:textColor="@drawable/textcolor_white_gray" />
+
+    <com.swifty.fillcolor.view.ImageButton_define
+        android:id="@+id/share"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/firstrow_icon_bg"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:src="@drawable/button_share"
+        android:text="@string/share"
+        android:textColor="@drawable/textcolor_white_gray" />
+
+
+    <com.swifty.fillcolor.view.ImageButton_define
+        android:id="@+id/save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/firstrow_icon_bg"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:src="@drawable/button_save"
+        android:text="@string/save"
+        android:textColor="@drawable/textcolor_white_gray" />
+
+    <com.swifty.fillcolor.view.ImageButton_define
+        android:id="@+id/open"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/firstrow_icon_bg"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:src="@drawable/button_open"
+        android:text="@string/open"
+        android:textColor="@drawable/textcolor_white_gray" />
+
+    <com.swifty.fillcolor.view.ImageButton_define
+        android:id="@+id/more"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/firstrow_icon_bg"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:src="@drawable/button_more"
+        android:text="@string/action_more"
+        android:textColor="@drawable/textcolor_white_gray" />
+</LinearLayout>

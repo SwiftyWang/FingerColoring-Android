@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/white_round_bg"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <com.swifty.fillcolor.view.ImageButton_define
+                android:id="@+id/addwords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/firstrow_icon_bg"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/bluetext"
+                android:text="@string/addtext"
+                android:textColor="@color/gray" />
+
+            <com.swifty.fillcolor.view.ImageButton_define
+                android:id="@+id/addborder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/firstrow_icon_bg"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/blueframe"
+                android:text="@string/addborder"
+                android:textColor="@color/gray" />
+
+            <Button
+                android:id="@+id/addvoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/maincolor_round_bg"
+                android:minHeight="40dp"
+                android:text="@string/addvoice"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray" />
+
+        <FrameLayout
+            android:id="@+id/paintview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/current_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitStart" />
+
+            <ImageView
+                android:id="@+id/border"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <com.swifty.fillcolor.view.ImageButton_define
+                android:id="@+id/repaint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/firstrow_icon_bg"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/bluedelete"
+                android:text="@string/repaint"
+                android:textColor="@color/gray" />
+
+            <com.swifty.fillcolor.view.ImageButton_define
+                android:id="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/firstrow_icon_bg"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/blueshare"
+                android:text="@string/share"
+                android:textColor="@color/gray" />
+
+            <com.swifty.fillcolor.view.ImageButton_define
+                android:id="@+id/cloudgallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/firstrow_icon_bg"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/blueupload"
+                android:text="@string/savetocloud"
+                android:textColor="@color/gray" />
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="right|top"
+        android:background="@drawable/button_cancel"/>
+</FrameLayout>

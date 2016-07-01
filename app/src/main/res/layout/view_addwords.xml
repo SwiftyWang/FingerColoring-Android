@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="330dp"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <EditText
+        android:id="@+id/addeditwords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/addeditwords_hint"
+        android:maxEms="20"
+        android:textSize="@dimen/small_textsize"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/textsize" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/small"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@id/small"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textsize_box"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/small"
+            android:textColor="@drawable/textsize_textcolor" />
+
+        <RadioButton
+            android:id="@+id/middle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/textsize_box"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/middle"
+            android:textColor="@drawable/textsize_textcolor" />
+
+        <RadioButton
+            android:id="@+id/large"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/textsize_box"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/large"
+            android:textColor="@drawable/textsize_textcolor" />
+
+        <RadioButton
+            android:id="@+id/huge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/textsize_box"
+            android:button="@null"
+            android:gravity="center"
+            android:minHeight="40sp"
+            android:text="@string/huge"
+            android:textColor="@drawable/textsize_textcolor" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/textcolor" />
+
+    <com.swifty.fillcolor.view.ColorPickerSeekBar
+        android:id="@+id/seekcolorpicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

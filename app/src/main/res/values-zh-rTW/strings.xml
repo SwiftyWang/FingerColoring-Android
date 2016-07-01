@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        
+    <string name="app_name">手指填圖-秘密花園</string>
+        
+    <string name="UMENGAPPKEY">55c0b9f967e58ee78f00231d</string>
+        
+    <string name="BAIDUAPIKEY">iD8ulydDkWhNWFmQEGEGY4m9</string>
+        
+    <string name="CHANNEL">default</string>
+        
+    <string name="action_settings">更多功能</string>
+        
+    <string name="action_about">關於</string>
+        
+    <string name="action_advice">給些建議</string>
+        
+    <string name="clickloadmore">滑到底部加載更多</string>
+        
+    <string name="loadmoretheme">載入更多主題中...</string>
+        
+    <string name="grabdata">讀取數據中...</string>
+        
+    <string name="loadpicture">載入模板中</string>
+        
+    <string name="loadpicturefailed">加載模板失敗請重試</string>
+        
+    <string name="advance">更多</string>
+        
+    <string name="undo">撤銷</string>
+        
+    <string name="redo">重複</string>
+        
+    <string name="save">保存</string>
+        
+    <string name="share">分享</string>
+        
+    <string name="savingimage">正在保存到本地</string>
+        
+    <string name="saveFailed">保存失敗</string>
+        
+    <string name="saveSuccess">您的大作已經保存到：</string>
+        
+    <string name="sharecontent">我在玩【手指填圖-秘密花園】,快和我一起來玩吧！下載地址：http://a.app.qq.com/o/simple.jsp?pkgname=com.swifty.fillcolor</string>
+        
+    <string name="pleaseselect">請選擇</string>
+        
+    <string name="sharemywork">快來看看我的新作。 </string>
+        
+    <string name="open">讀取</string>
+        
+    <string name="openfailed">快動動手指先創作一幅吧！ </string>
+        
+    <string name="ok">確定</string>
+        
+    <string name="quitorsave">離開前，需要保存當前作品嗎？ </string>
+        
+    <string name="quit">不用</string>
+        
+    <string name="action_search">本地搜索</string>
+        
+    <string name="action_more">更多功能</string>
+        
+    <string name="marketcomment">給我五星好評</string>
+        
+    <string name="about">關於和說明</string>
+        
+    <string name="version">版本號</string>
+        
+    <string name="email">反饋郵箱</string>
+        
+    <string name="authoremail">469526674@qq.com</string>
+        
+    <string name="qq">QQ登錄</string>
+        
+    <string name="commentFailed">請先安裝一個應用市場</string>
+        
+    <string name="opensuccess">已為您打開保存的作品，可以繼續創作啦！ \n點擊撤銷可以返回原先的圖片！ </string>
+        
+    <string name="noupdatelog"></string>
+        
+    <string name="undostacksize">撤銷步數</string>
+        
+    <string name="loadfailed">加載數據失敗</string>
+        
+    <string name="commentDialogContent">快來給我五星好評，即可免費下載新的線稿哦！ </string>
+        
+    <string name="nexttime">以後再說</string>
+        
+    <string name="gocomment">去評論</string>
+        
+    <string name="clearcache">清除全部已下載的圖片\n您的作品不會刪除</string>
+        
+    <string name="clearcacheing">正在清理緩存，請稍後</string>
+        
+    <string name="clearcachesuccess">清除成功</string>
+        
+    <string name="themelist">主題列表</string>
+        
+    <string name="pleasepressexit">再按一次退出</string>
+        
+    <string name="nomoredata">全部加載完成</string>
+        
+    <string name="loading">加載中...</string>
+        
+    <string name="secretGarden">秘密花園</string>
+        
+    <string name="welcomeusethis">歡迎使用Finger Coloring</string>
+        
+    <string name="paintHint">選中喜歡的顏色輕觸圖片空白區域即可\n雙指可放大縮小圖片\n左下角可以保存四個喜歡的顏料，快來著色吧！ </string>
+        
+    <string name="paintHint2">打開已經保存的圖片後，按撤消即可返回原圖，重新做圖！ \n快來試試吧！ </string>
+        
+    <string name="qqgroup">QQ玩家交流群</string>
+        
+    <string name="qqgroupnumber">104368068</string>
+        
+    <string name="joinGroupFailed">未安裝手Q或安裝的版本不支持</string>
+        
+    <string name="joinGroup">加入QQ玩家討論群</string>
+        
+    <string name="wechat">微信</string>
+        
+    <string name="userlogin">我的塗色</string>
+        
+    <string name="imagewall">塗鴉牆</string>
+        
+    <string name="pullqqloging">正在拉起QQ登陸</string>
+        
+    <string name="network_notconnet">請先連接網絡</string>
+        
+    <string name="comment">評論</string>
+        
+    <string name="logout">登出</string>
+        
+    <string name="addtext">添加文字</string>
+        
+    <string name="addvoice">添加聲音</string>
+        
+    <string name="delete">刪除</string>
+        
+    <string name="repaint">刪除作品</string>
+        
+    <string name="confirmRepaint">重畫會刪除已保存的作品，確定重新塗色嗎？ </string>
+        
+    <string name="cancel">取消</string>
+        
+    <string name="addeditwords_hint">寫些祝福語吧</string>
+        
+    <string name="textsize">字體大小</string>
+        
+    <string name="small">小</string>
+        
+    <string name="middle">中</string>
+        
+    <string name="large">大</string>
+        
+    <string name="huge">巨大</string>
+        
+    <string name="textcolor">字體顏色</string>
+        
+    <string name="nowords">先寫什麼吧</string>
+        
+    <string name="savetocloud">上傳到雲端</string>
+        
+    <string name="giveme5stars">快來給我五星好評，立刻解鎖此類圖片！ </string>
+        
+    <string name="updateVersion">升級版本</string>
+        
+    <string name="currentVersionIsntSupport">啊哦~未找到鑰匙來解鎖此圖片，請升級版本後嘗試吧！ </string>
+        
+    <string name="checkupdate">檢測更新</string>
+        
+    <string name="sharemeunlock">好應用分享給朋友，立刻解鎖此類圖片！ </string>
+        
+    <string name="noupdate">已經是最新版本</string>
+        
+    <string name="onlyupdateinwifi">沒有wifi連接， 只在wifi下更新</string>
+        
+    <string name="timeout">連接超時，請重試</string>
+        
+    <string name="checkupdateing">檢測更新中</string>
+        
+    <string name="addborder">添加相框</string>
+        
+    <string name="pleaselogin">即將推出，敬請期待</string>
+        
+    <string name="comingsoon">即將推出，敬請期待</string>
+        
+    <string name="localPaint">本機作品</string>
+        
+    <string name="cloudPaint">雲端作品</string>
+        
+    <string name="nopaint">怎麼都找不到想要的數據啦！</string>
+        
+    <string name="deletePaintFailed">刪除作品失敗</string>
+        
+    <string name="deleteAllPaints">刪除所有作品</string>
+        
+    <string name="confirmDeleteAllPaints">確認刪除所有您的作品嗎？刪除後無法找回的哦！ </string>
+        
+    <string name="deleteAllPaintsSuccess">所有作品刪除完成！ </string>
+        
+    <string name="lastModifty">最後修改時間</string>
+        
+    <string name="aboutImage">線稿來源：本軟件線稿來自網絡抓取並自己算法處理，如您有疑問或有線稿想投放請通過以下的聯繫方式。 </string>
+        
+    <string name="addQQgroup">加入QQ玩家群</string>
+        
+    <string name="addQQgroupContent">需要現在加入QQ玩家討論群嗎?加入之後可以和大家一起玩遊戲哦！ </string>
+    <string name="pickcolor">取色</string>
+    <string name="pickcolorhint">輕觸圖中想要取色的位置，完成取色</string>
+        
+    <string name="pickcolorerror">請輕觸正確的顏色位置</string>
+        
+    <string name="drawLine">補線</string>
+        
+    <string name="drawLineHint">請輕觸圖片設置起始點</string>
+        
+    <string name="drawLineHint_second">請輕觸圖片設置終點</string>
+        
+    <string name="drawLineHint_finish">請輕觸有效的圖片區域</string>
+        
+    <string name="allPicture">緩存模板</string>
+        
+    <string name="dontshownexttime">下次不再顯示</string>
+        
+    <string name="buxianfunction">補線功能介紹</string>
+        
+    <string name="buxianfunctionhint">現在可以自己在圖中自由的畫線，然後填色啦！ \n首先，點擊圖片任意位置，設定線起始點。 </string>
+        
+    <string name="buxianfirstpointsethint">現在，請再在圖中選取一個點，設定線的結束位置，系統將自動完成連線。 </string>
+        
+    <string name="buxiannextpointsethint">繼續點擊圖中任意位置，將繼續連線！撤銷按鈕可擦除上一條連線。 </string>
+        
+    <string name="pullfacebookloging">正在拉起Facebook登陸</string>
+        
+    <string name="facebooklogin">Facebook登錄</string>
+    <string name="language">語言</string>
+    <string name="menu">MENU</string>
+    <string name="social">SNS</string>
+    <string name="loginSuccess">Login Success</string>
+    <string name="logincontent">Login As...</string>
+    <string name="logincontentfirst">Login and use Cloud upload function!\nLogin now!</string>
+    <string name="loginbg">Login in background..</string>
+    <string name="jianbian_color">漸變色</string>
+    <string name="gradualModelHint">高級功能-漸變顏色。請注意：漸變顏色後不能覆蓋成其他顏色，如要修改請先撤銷！</string>
+    <string name="loginFailed">登錄失敗</string>
+    <string name="normal_color">正常色</string>
+    <string name="gradualModel">漸變功能</string>
+</resources>

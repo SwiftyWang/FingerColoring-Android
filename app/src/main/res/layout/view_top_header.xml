@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_lay"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/usertabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/tab_imagecache"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_localimage"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/allPicture"
+            android:textColor="@drawable/textsize_textcolor" />
+
+        <RadioButton
+            android:id="@+id/tab_local"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_localimage"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/localPaint"
+            android:textColor="@drawable/textsize_textcolor" />
+
+        <RadioButton
+            android:id="@+id/tab_cloud"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_localimage"
+            android:button="@null"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/cloudPaint"
+            android:textColor="@drawable/textsize_textcolor" />
+    </RadioGroup>
+</LinearLayout>
