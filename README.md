@@ -1,4 +1,4 @@
-<h3>It is a hubby project made by me, the main function is let users to fill the image and paint a beautiful image！</h3>
+<h3>It is a hobby project made by me, the main function is let users to fill the image and paint a beautiful image！</h3>
 
 <h2>Update at 18 Nov 2016:</h2>
 Open source this application now! Current version is 1.2.0</br>
