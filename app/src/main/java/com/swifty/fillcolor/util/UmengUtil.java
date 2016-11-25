@@ -39,10 +39,6 @@ public class UmengUtil {
         });
     }
 
-    public static void analysisInit(Context context) {
-        MobclickAgent.updateOnlineConfig(context);
-    }
-
     public static void analysitic(Context context, String string, String string2) {
         MobclickAgent.onEvent(context, string, string2);
     }

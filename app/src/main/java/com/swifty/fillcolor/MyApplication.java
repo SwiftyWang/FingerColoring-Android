@@ -67,7 +67,6 @@ public class MyApplication extends Application {
         super.onCreate();
         initLanguage(this);
         initImageLoader();
-        UmengUtil.analysisInit(this);
         UmengUtil.autoUpdate(this);
         screenWidth = getScreenWidth(this);
     }
