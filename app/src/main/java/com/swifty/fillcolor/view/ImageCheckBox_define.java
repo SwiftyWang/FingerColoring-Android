@@ -81,7 +81,6 @@ public class ImageCheckBox_define extends LinearLayout implements Checkable, Vie
         int[] drawableState = super.onCreateDrawableState(extraSpace + 1);
         if (mChecked) {
             mergeDrawableStates(drawableState, STATE_CHECKABLE);
-            imageViewbutton.mergeDrawableStates(drawableState, STATE_CHECKABLE);
         }
         return drawableState;
     }
