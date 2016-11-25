@@ -37,45 +37,36 @@
         <activity
             android:name=".controller.paint.PaintActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
         <activity
             android:name=".controller.categorylist.GridViewActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".controller.paint.AdvancePaintActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.Dialog.NoActionBar"></activity>
-
-        <!-- UMENG AUTO UPDATE-->
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="@string/UMENGAPPKEY" />
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="@string/CHANNEL" />
-
+            android:theme="@style/Theme.AppCompat.Light.Dialog.NoActionBar"/>
         <service
             android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService"></service>
+            android:process=":DownloadingService"/>
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <!-- UMENG ANALYSIS-->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="@string/UMENGAPPKEY"></meta-data>
+            android:value="@string/UMENGAPPKEY"/>
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="@string/CHANNEL" />
         <!-- UMENG PUSH-->
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="a6df26ee856d8ecf8711ed4296383401"></meta-data>
+            android:value="a6df26ee856d8ecf8711ed4296383401"/>
         <!-- 监听通知点击或者忽略处理的广播 -->
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
-            android:exported="false"></receiver>
+            android:exported="false"/>
 
         <!-- 监听开机运行、网络连接变化、卸载的广播 -->
         <receiver
@@ -201,7 +192,7 @@
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <!-- facebook相关 -->
         <activity
