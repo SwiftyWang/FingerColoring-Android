@@ -1,4 +1,5 @@
 <h3>It is a hobby project made by me, the main function is let users to fill the image and paint a beautiful image！</h3>
+<a href='https://play.google.com/store/apps/details?id=com.swifty.fillcolor'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="70" width="180"/></a>
 
 <h2>Update at 18 Nov 2016:</h2>
 Open source this application now! Current version is 1.2.0</br>
