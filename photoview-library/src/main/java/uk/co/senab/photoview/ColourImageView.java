@@ -12,8 +12,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.LogPrinter;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+
+import com.apkfuns.logutils.LogUtils;
 
 import java.util.Stack;
 
@@ -33,12 +36,11 @@ public class ColourImageView extends ImageView {
     }
 
     private Bitmap mBitmap;
-    /**
-     * ???????
-     */
     private int mBorderColor = -1;
 
     private Stack<Point> mStacks = new Stack<Point>();
+    private Stack<PointBean> undoBeans = new Stack<>();
+    private Stack<PointBean> redoBeans = new Stack<>();
     private int mColor = 0xFF00BCD4;
     private int stacksize = 10;
     private Stack<Bitmap> bmstackundo;
@@ -47,6 +49,8 @@ public class ColourImageView extends ImageView {
     private Stack<Point> redopoints;
     private OnRedoUndoListener onRedoUndoListener;
     private AsyncTask loaderTask;
+    private AsyncTask undoTask;
+    private AsyncTask redoTask;
 
     private Model model = Model.FILLCOLOR;
     private OnColorPickListener onColorPickListener;
@@ -56,25 +60,11 @@ public class ColourImageView extends ImageView {
     public ColourImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initStack();
-//        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ColourImageView);
-//        mBorderColor = ta.getColor(R.styleable.ColourImageView_border_color, -1);
-//        hasBorderColor = (mBorderColor != -1);
-//
-//        L.e("hasBorderColor = " + hasBorderColor + " , mBorderColor = " + mBorderColor);
-//
-//        ta.recycle();
-
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-
-    public Bitmap createBitMap() {
-        BitmapDrawable drawable = (BitmapDrawable) getDrawable();
-        Bitmap bm = drawable.getBitmap();
-        return bm.copy(bm.getConfig(), true);
     }
 
     public void createBitMap(Bitmap bt) {
@@ -87,8 +77,6 @@ public class ColourImageView extends ImageView {
         int y = (int) event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                //???
-                //fillColorToSameArea(x, y);
         }
         return super.onTouchEvent(event);
     }
@@ -113,19 +101,13 @@ public class ColourImageView extends ImageView {
 
 
     /**
-     * ???x,y?????????????????
-     *
+     *填充颜色，并将其添加到stack中
      * @param x
      * @param y
      */
     public void fillColorToSameArea(int x, int y) {
         //there x,y may be many problems such x<0 x>getwidth catch all the exceptions and this touch do nothing!
         try {
-            //if FILLGRADUALCOLOR model then check is white area if not return
-//            if(model == Model.FILLGRADUALCOLOR && mBitmap.getPixel(x, y) != Color.WHITE){
-//                return;
-//            }
-            //if click pixel is transparent or border or same color do nothing
             if (mBitmap.getPixel(x, y) != mColor && !isBorderColor(mBitmap.getPixel(x, y)) && mBitmap.getPixel(x, y) != Color.TRANSPARENT) {
                 ProgressLoading.show(getContext(), true);
                 ProgressLoading.setOndismissListener(new DialogInterface.OnDismissListener() {
@@ -145,20 +127,20 @@ public class ColourImageView extends ImageView {
 
                         //save bm to undo stack
                         try {
-                            pushUndoStack(bm.copy(bm.getConfig(), true));
+//                            pushUndoStack(bm.copy(bm.getConfig(), true)); //添加bitmap到返回栈中
                             int pixel = bm.getPixel((int) objects[0], (int) objects[1]);
+                            undoBeans.push(new PointBean(new Point((int) objects[0],(int) objects[1]),pixel,mColor)); //保存到栈列中 点 + 当前点颜色+ 填充点颜色
+                            redoBeans.clear();
+//                            填充时，添加到返回栈清空重复栈
                             int w = bm.getWidth();
                             int h = bm.getHeight();
-                            //?????bitmap?????????
                             int[] pixels = new int[w * h];
                             bm.getPixels(pixels, 0, w, 0, 0, w, h);
-                            //???
-                            fillColor(pixels, w, h, pixel, mColor, (int) objects[0], (int) objects[1]);
-                            //????????bitmap
+                            fillColor(pixels, w, h, pixel, mColor, (int) objects[0], (int) objects[1],0);
                             bm.setPixels(pixels, 0, w, 0, 0, w, h);
                             return true;
                         } catch (Exception e) {
-                            bmstackundo.pop();
+                           undoBeans.pop();
                             return false;
                         }
                     }
@@ -167,9 +149,9 @@ public class ColourImageView extends ImageView {
                     protected void onPostExecute(Object o) {
                         super.onPostExecute(o);
                         ProgressLoading.DismissDialog();
-                        setImageDrawable(new BitmapDrawable(getResources(), bm));
-                        if (onRedoUndoListener != null) {
-                            onRedoUndoListener.onRedoUndo(bmstackundo.size(), bmstackredo.size());
+                        setImageDrawable(new BitmapDrawable(getResources(), bm)); //将绘制完的bitmap显示出来
+                        if(onRedoUndoListener != null){
+                            onRedoUndoListener.onRedoUndo(undoBeans.size(),redoBeans.size());
                         }
                     }
                 }.execute(x, y);
@@ -201,21 +183,32 @@ public class ColourImageView extends ImageView {
      * @param i        横坐标
      * @param j        纵坐标
      */
-    private void fillColor(int[] pixels, int w, int h, int pixel, int newColor, int i, int j) {
+    private void fillColor(int[] pixels, int w, int h, int pixel, int newColor, int i, int j,int taskId) {
+        LogUtils.e("w:"+w+",h:"+h+",pixel:"+pixel+",newColor:"+newColor+",i:"+i+",j:"+j);
         int orginalX = i;
         int orginalY = j;
-        mStacks.clear();
+        mStacks.clear(); //清空原有的点栈
         mStacks.push(new Point(i, j));
         while (!mStacks.isEmpty()) {
-            if (loaderTask.isCancelled()) {
-                break;
+            if(taskId == 0){
+                if (loaderTask.isCancelled()) {
+                    break;
+                }
             }
-
-            Point seed = mStacks.pop();
-            //L.e("seed = " + seed.x + " , seed = " + seed.y);
-            int count = fillLineLeft(pixels, pixel, w, h, newColor, seed.x, seed.y, orginalX, orginalY);
+            if(taskId == 1){
+                if (undoTask.isCancelled()) {
+                    break;
+                }
+            }
+            if(taskId == 2){
+                if (redoTask.isCancelled()) {
+                    break;
+                }
+            }
+            Point seed = mStacks.pop();  //获取这个栈的point值
+            int count = fillLineLeft(pixels, pixel, w, h, newColor, seed.x, seed.y, orginalX, orginalY); //填充左边点亚瑟
             int left = seed.x - count + 1;
-            count = fillLineRight(pixels, pixel, w, h, newColor, seed.x + 1, seed.y, orginalX, orginalY);
+            count = fillLineRight(pixels, pixel, w, h, newColor, seed.x + 1, seed.y, orginalX, orginalY);//填充右线颜色
             int right = seed.x + count;
 
             if (seed.y - 1 >= 0)
@@ -259,25 +252,32 @@ public class ColourImageView extends ImageView {
 
 
     /**
-     * ???????????????????????
-     *
+     * 填充线左边
+     * @param pixels  像素数组
+     * @param pixel  当前填充颜色
+     * @param w 宽度
+     * @param h  高度
+     * @param newColor 新填充色
+     * @param x  点的x坐标
+     * @param y  点的y坐标
+     * @param orginalX  原点的x坐标
+     * @param orginalY 原点的y坐标
      * @return
      */
     private int fillLineLeft(int[] pixels, int pixel, int w, int h, int newColor, int x, int y, int orginalX, int orginalY) {
         int count = 0;
         while (x >= 0) {
-            //?????????
             int index = y * w + x;
-
             if (needFillPixel(pixels, pixel, index)) {
                 if (model == Model.FILLCOLOR) {
                     pixels[index] = newColor;
                 } else if (model == Model.FILLGRADUALCOLOR) {
                     float[] colorHSV = new float[]{0f, 0f, 1f};
-                    Color.colorToHSV(newColor, colorHSV);
+                    Color.colorToHSV(newColor, colorHSV); //color转化为 HSV
+                    LogUtils.e(colorHSV);
                     float dis = (float) Math.sqrt((x - orginalX) * (x - orginalX) + (y - orginalY) * (y - orginalY));
                     colorHSV[1] = (colorHSV[1] - dis * 0.006) < 0.2 ? 0.2f : (colorHSV[1] - dis * 0.006f);
-                    pixels[index] = Color.HSVToColor(colorHSV);
+                    pixels[index] = Color.HSVToColor(colorHSV);//HSV转化为 color
                 }
                 count++;
                 x--;
@@ -293,7 +293,6 @@ public class ColourImageView extends ImageView {
         int count = 0;
 
         while (x < w) {
-            //???????
             int index = y * w + x;
             if (needFillPixel(pixels, pixel, index)) {
                 if (model == Model.FILLCOLOR) {
@@ -315,6 +314,13 @@ public class ColourImageView extends ImageView {
         return count;
     }
 
+    /**
+     * 是否需要填充颜色
+     * @param pixels
+     * @param pixel
+     * @param index
+     * @return
+     */
     private boolean needFillPixel(int[] pixels, int pixel, int index) {
         if (model == Model.FILLGRADUALCOLOR) {
             return pixels[index] == pixel;
@@ -336,50 +342,157 @@ public class ColourImageView extends ImageView {
                 getDrawable().getIntrinsicHeight() * getMeasuredWidth() / getDrawable().getIntrinsicWidth());
     }
 
+    /**
+     * 设置颜色
+     * @param color
+     */
     public void setColor(int color) {
         mColor = color;
     }
 
-    /**
+    /**撤销功能
      * @return true: has element can undo;
      */
     public boolean undo() {
         try {
-            if (bmstackundo.peek() != null) {
-                bmstackredo.push(mBitmap.copy(mBitmap.getConfig(), true));
-                mBitmap = bmstackundo.pop();
-                setImageDrawable(new BitmapDrawable(getResources(), mBitmap));
-                if (onRedoUndoListener != null) {
-                    onRedoUndoListener.onRedoUndo(bmstackundo.size(), bmstackredo.size());
+            if(undoBeans.peek() != null){
+                PointBean bean =  undoBeans.pop();
+                redoBeans.push(bean); //将undoBeans的第一个栈添加到重复栈中
+                try {
+                        ProgressLoading.show(getContext(), true);
+                        ProgressLoading.setOndismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialogInterface) {
+                                if (undoTask != null) {
+                                    //destroy asyntask
+                                    undoTask.cancel(true);
+                                }
+                            }
+                        });
+                    undoTask = new AsyncTask() {
+                            @Override
+                            protected Object doInBackground(Object[] objects) {
+
+                                //save bm to undo stack
+                                try {
+//                            pushUndoStack(bm.copy(bm.getConfig(), true)); //添加bitmap到返回栈中
+                                    PointBean bean1 =  (PointBean) objects[0];
+//                            填充时，添加到返回栈清空重复栈
+                                    int w = mBitmap.getWidth();
+                                    int h = mBitmap.getHeight();
+                                    int[] pixels = new int[w * h];
+                                    mBitmap.getPixels(pixels, 0, w, 0, 0, w, h);
+                                    fillColor(pixels, w, h, bean1.getNewColor(), bean1.getOldColor(), bean1.getPoint().x, bean1.getPoint().y,1);
+                                    mBitmap.setPixels(pixels, 0, w, 0, 0, w, h);
+                                    return true;
+                                } catch (Exception e) {
+                                    return false;
+                                }
+                            }
+
+                            @Override
+                            protected void onPostExecute(Object o) {
+                                super.onPostExecute(o);
+                                ProgressLoading.DismissDialog();
+                                setImageDrawable(new BitmapDrawable(getResources(), mBitmap)); //将绘制完的bitmap显示出来
+                            }
+                        }.execute(bean);
+                } catch (Exception e) {
+                    //do nothing.
                 }
-                if (undopoints != null && !undopoints.empty()) {
-                    redopoints.push(undopoints.pop());
+                if (onRedoUndoListener != null) {  //获得撤销的大小，这样查看是否还能撤销
+                    onRedoUndoListener.onRedoUndo(undoBeans.size(), redoBeans.size());
                 }
-                return !bmstackundo.empty();
+                return !undoBeans.empty();
             }
+
+//            if (bmstackundo.peek() != null) {  //返回栈顶对象
+//                bmstackredo.push(mBitmap.copy(mBitmap.getConfig(), true)); //添加到重复栈中
+//                mBitmap = bmstackundo.pop();  //撤销栈顶，返回这个对象
+//                setImageDrawable(new BitmapDrawable(getResources(), mBitmap)); //设置图片资源
+//                if (onRedoUndoListener != null) {  //获得撤销的大小，这样查看是否还能撤销
+//                    onRedoUndoListener.onRedoUndo(bmstackundo.size(), bmstackredo.size());
+//                }
+//                if (undopoints != null && !undopoints.empty()) { //如果撤销点不是空
+//                    redopoints.push(undopoints.pop()); //添加到重复点中
+//                }
+//                return !bmstackundo.empty();
+//            }
         } catch (Exception e) {
 
         }
         return false;
     }
 
-    /**
+    /**重复功能
      * @return true: has element ,can redo;
      */
     public boolean redo() {
         try {
-            if (bmstackredo.peek() != null) {
-                bmstackundo.push(mBitmap.copy(mBitmap.getConfig(), true));
-                mBitmap = bmstackredo.pop();
-                setImageDrawable(new BitmapDrawable(getResources(), mBitmap));
+            if(redoBeans.peek() != null){
+                PointBean redo = redoBeans.pop();
+                undoBeans.push(redo);
+                try {
+                    ProgressLoading.show(getContext(), true);
+                    ProgressLoading.setOndismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            if (redoTask != null) {
+                                //destroy asyntask
+                                redoTask.cancel(true);
+                            }
+                        }
+                    });
+                    redoTask = new AsyncTask() {
+                        Bitmap bm = mBitmap;
+                        @Override
+                        protected Object doInBackground(Object[] objects) {
+
+                            //save bm to undo stack
+                            try {
+//                            pushUndoStack(bm.copy(bm.getConfig(), true)); //添加bitmap到返回栈中
+                                PointBean bean1 =  (PointBean) objects[0];
+//                            填充时，添加到返回栈清空重复栈
+                                int w = bm.getWidth();
+                                int h = bm.getHeight();
+                                int[] pixels = new int[w * h];
+                                bm.getPixels(pixels, 0, w, 0, 0, w, h);
+                                fillColor(pixels, w, h, bean1.getOldColor(), bean1.getNewColor(), bean1.getPoint().x, bean1.getPoint().y,2);
+                                bm.setPixels(pixels, 0, w, 0, 0, w, h);
+                                return true;
+                            } catch (Exception e) {
+                                return false;
+                            }
+                        }
+
+                        @Override
+                        protected void onPostExecute(Object o) {
+                            super.onPostExecute(o);
+                            ProgressLoading.DismissDialog();
+                            setImageDrawable(new BitmapDrawable(getResources(), bm)); //将绘制完的bitmap显示出来
+                        }
+                    }.execute(redo);
+                } catch (Exception e) {
+                    //do nothing.
+                    LogUtils.e("捕获异常");
+                }
                 if (onRedoUndoListener != null) {
-                    onRedoUndoListener.onRedoUndo(bmstackundo.size(), bmstackredo.size());
+                    onRedoUndoListener.onRedoUndo(undoBeans.size(), redoBeans.size()); //数量变换
                 }
-                if (redopoints != null && !redopoints.empty()) {
-                    undopoints.push(redopoints.pop());
-                }
-                return !bmstackredo.empty();
+                return !redoBeans.empty();
             }
+//            if (bmstackredo.peek() != null) {   //返回栈顶对象
+//                bmstackundo.push(mBitmap.copy(mBitmap.getConfig(), true)); //增加一个撤销对象到栈顶
+//                mBitmap = bmstackredo.pop();  //获取重复栈顶数据
+//                setImageDrawable(new BitmapDrawable(getResources(), mBitmap));
+//                if (onRedoUndoListener != null) {
+//                    onRedoUndoListener.onRedoUndo(bmstackundo.size(), bmstackredo.size()); //数量变换
+//                }
+//                if (redopoints != null && !redopoints.empty()) {
+//                    undopoints.push(redopoints.pop()); //将重复点添加到撤销点中
+//                }
+//                return !bmstackredo.empty();
+//            }
         } catch (Exception e) {
 
         }
@@ -506,184 +619,6 @@ public class ColourImageView extends ImageView {
         paint.setStrokeWidth(2);
         canvas.drawLine(startX, startY, endX, endY, paint);
     }
-
-    private void doingDrawLineAsyn(Bitmap bm, int startX, int startY, int endX, int endY) {
-        //if two point same reture
-        if (startX == endX && startY == endY) {
-            bm.setPixel(startX, startY, 0xFF000000);
-            return;
-        }
-        //if shuxian
-        if (startX == endX) {
-            if (endY > startY) {
-                for (int i = startY; i < endY; i++) {
-                    bm.setPixel(startX, i, 0xFF000000);
-                }
-            } else {
-                for (int i = endY; i < startY; i++) {
-                    bm.setPixel(startX, i, 0xFF000000);
-                }
-            }
-            return;
-        }
-        //if henxian
-        if (startY == endY) {
-            if (endX > startX) {
-                for (int i = startX; i < endX; i++) {
-                    bm.setPixel(i, startY, 0xFF000000);
-                }
-            } else {
-                for (int i = endX; i < startX; i++) {
-                    bm.setPixel(i, startY, 0xFF000000);
-                }
-            }
-            return;
-        }
-        //if xiexian
-        if (Math.abs(endY - startY) > Math.abs(endX - startX)) {
-            float radio = Math.abs((float) (endY - startY) / (endX - startX));
-            int offset = 0;
-            int bushu = radio % 1 == 0 ? 0 : (int) (1 / (radio % 1));
-            int tempY;
-            if (endY > startY && endX > startX) {
-                tempY = startY;
-                for (int i = startX; i < endX; i++) {
-                    for (int j = 0; j <= radio; j++) {
-                        bm.setPixel(i, tempY + j, 0xFF000000);
-                    }
-                    tempY += (int) radio;
-                    if (bushu != 0) {
-                        if (offset == bushu) {
-                            bm.setPixel(i, tempY++, 0xFF000000);
-                            offset = 0;
-                        } else {
-                            offset++;
-                        }
-                    }
-                }
-            } else if (endY < startY && endX > startX) {
-                tempY = startY;
-                for (int i = startX; i < endX; i++) {
-                    for (int j = 0; j <= radio; j++) {
-                        bm.setPixel(i, tempY - j, 0xFF000000);
-                    }
-                    tempY -= (int) radio;
-                    if (bushu != 0) {
-                        if (offset == bushu) {
-                            bm.setPixel(i, tempY--, 0xFF000000);
-                            offset = 0;
-                        } else {
-                            offset++;
-                        }
-                    }
-                }
-            } else if (endY > startY && endX < startX) {
-
-                tempY = endY;
-                for (int i = endX; i < startX; i++) {
-                    for (int j = 0; j <= radio; j++) {
-                        bm.setPixel(i, tempY - j, 0xFF000000);
-                    }
-                    tempY -= (int) radio;
-                    if (bushu != 0) {
-                        if (offset == bushu) {
-                            bm.setPixel(i, tempY--, 0xFF000000);
-                            offset = 0;
-                        } else {
-                            offset++;
-                        }
-                    }
-                }
-            } else if (endY < startY && endX < startX) {
-                tempY = endY;
-                for (int i = endX; i < startX; i++) {
-                    for (int j = 0; j <= radio; j++) {
-                        bm.setPixel(i, tempY + j, 0xFF000000);
-                    }
-                    tempY += (int) radio;
-                    if (bushu != 0) {
-                        if (offset == bushu) {
-                            bm.setPixel(i, tempY++, 0xFF000000);
-                            offset = 0;
-                        } else {
-                            offset++;
-                        }
-                    }
-                }
-            }
-        } else {
-            float radio = Math.abs((float) (endX - startX) / (endY - startY));
-            int offset = 0;
-            int bushu = radio % 1 == 0 ? 0 : (int) (1 / (radio % 1));
-            int tempX;
-            if (endY > startY && endX > startX) {
-                tempX = startX; //select small one
-                for (int i = startY; i < endY; i++) { //loop start at small one end at large one
-                    for (int j = 0; j <= radio; j++) {
-                        bm.setPixel(tempX + j, i, 0xFF000000);
-                    }
-                    tempX += (int) radio;
-                    if (bushu != 0) {
-                        if (offset == bushu) {
-                            bm.setPixel(++tempX, i, 0xFF000000);
-                            offset = 0;
-                        } else {
-                            offset++;
-                        }
-                    }
-                }
-            } else if (endY < startY && endX > startX) {
-                tempX = endX;
-                for (int i = endY; i < startY; i++) {
-                    for (int j = 0; j <= radio; j++) {
-                        bm.setPixel(tempX - j, i, 0xFF000000);
-                    }
-                    tempX -= (int) radio;
-                    if (bushu != 0) {
-                        if (offset == bushu) {
-                            bm.setPixel(--tempX, i, 0xFF000000);
-                            offset = 0;
-                        } else {
-                            offset++;
-                        }
-                    }
-                }
-            } else if (endY > startY && endX < startX) {
-                tempX = startX;
-                for (int i = startY; i < endY; i++) {
-                    for (int j = 0; j <= radio; j++) {
-                        bm.setPixel(tempX - j, i, 0xFF000000);
-                    }
-                    tempX -= (int) radio;
-                    if (bushu != 0) {
-                        if (offset == bushu) {
-                            bm.setPixel(--tempX, i, 0xFF000000);
-                            offset = 0;
-                        } else {
-                            offset++;
-                        }
-                    }
-                }
-            } else if (endY < startY && endX < startX) {
-                tempX = endX;
-                for (int i = endY; i < startY; i++) {
-                    for (int j = 0; j < radio; j++) {
-                        bm.setPixel(tempX + j, i, 0xFF000000);
-                    }
-                    tempX += (int) radio;
-                    if (bushu != 0) {
-                        if (offset == bushu) {
-                            bm.setPixel(++tempX, i, 0xFF000000);
-                            offset = 0;
-                        } else {
-                            offset++;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     public void setOnDrawLineListener(OnDrawLineListener onDrawLineListener) {
         this.onDrawLineListener = onDrawLineListener;
     }
